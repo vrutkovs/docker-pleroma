@@ -33,6 +33,10 @@ RUN echo "import Mix.Config" > config/prod.secret.exs \
     && mkdir release \
     && mix release --path /pleroma
 
+RUN chmod a+x /pleroma/bin/pleroma && \
+    chmod a+x /pleroma/releases/2.3.0/elixir && \
+    chmod a+w /pleroma/lib
+
 COPY ./config.exs /etc/pleroma/config.exs
 
 EXPOSE 4000
