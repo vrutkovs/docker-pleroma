@@ -24,7 +24,7 @@ USER pleroma
 WORKDIR /pleroma
 
 RUN git clone -b develop https://git.pleroma.social/pleroma/pleroma.git /pleroma \
-    && git checkout ${PLEROMA_VER} 
+    && git checkout v${PLEROMA_VER} 
 
 RUN echo "import Mix.Config" > config/prod.secret.exs \
     && mix local.hex --force \
@@ -34,8 +34,8 @@ RUN echo "import Mix.Config" > config/prod.secret.exs \
     && mix release --path /pleroma
 
 RUN chmod a+x /pleroma/bin/pleroma && \
-    chmod a+x /pleroma/releases/2.3.0/elixir && \
-    chmod a+w /pleroma/lib
+    chmod a+x /pleroma/releases/${PLEROMA_VER}/elixir && \
+    chmod a+w /pleroma/lib -R
 
 COPY ./config.exs /etc/pleroma/config.exs
 
