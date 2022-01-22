@@ -1,6 +1,6 @@
 FROM elixir:1.11-alpine
 
-ARG PLEROMA_VER=develop
+ARG PLEROMA_VER=2.4.2
 ENV UID=911 GID=911 MIX_ENV=prod
 
 ENV MIX_ENV=prod
@@ -23,7 +23,7 @@ RUN mkdir -p /etc/pleroma \
 USER pleroma
 WORKDIR /pleroma
 
-RUN git clone -b develop https://git.pleroma.social/pleroma/pleroma.git /pleroma \
+RUN git clone -b v2.4.2 https://git.pleroma.social/pleroma/pleroma.git /pleroma \
     && git checkout v${PLEROMA_VER} 
 
 RUN echo "import Mix.Config" > config/prod.secret.exs \
