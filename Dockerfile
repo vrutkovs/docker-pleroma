@@ -37,7 +37,9 @@ RUN echo "import Mix.Config" > config/prod.secret.exs \
 
 RUN chmod a+x /pleroma/bin/pleroma && \
     chmod a+x /pleroma/releases/${PLEROMA_VER}/elixir && \
-    chmod a+w /pleroma/lib -R
+    chmod a+w /pleroma/lib -R && \
+    wget -O soapbox-fe.zip https://gitlab.com/soapbox-pub/soapbox-fe/-/jobs/artifacts/v1.3.0/download?job=build-production && \
+    unzip soapbox-fe.zip -o -d /pleroma/priv
 
 COPY ./config.exs /etc/pleroma/config.exs
 
