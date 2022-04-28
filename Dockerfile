@@ -39,7 +39,9 @@ RUN chmod a+x /pleroma/bin/pleroma && \
     chmod a+x /pleroma/releases/${PLEROMA_VER}/elixir && \
     chmod a+w /pleroma/lib -R && \
     wget -O soapbox-fe.zip https://gitlab.com/soapbox-pub/soapbox-fe/-/jobs/artifacts/v1.3.0/download?job=build-production && \
-    unzip soapbox-fe.zip -o -d /pleroma/priv
+    mkdir -p ${DATA}/static/frontends/soapbox/stable && \
+    unzip soapbox-fe.zip -o -d ${DATA}/static/frontends/soapbox/stable && \
+    mv ${DATA}/static/frontends/soapbox/stable/static/* ${DATA}/static/frontends/soapbox/stable
 
 COPY ./config.exs /etc/pleroma/config.exs
 
