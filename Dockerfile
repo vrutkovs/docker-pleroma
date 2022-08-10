@@ -1,4 +1,4 @@
-FROM quay.io/official-images/elixir:1.13.1-alpine
+FROM docker.io/elixir:1.13.4-alpine
 
 ARG PLEROMA_VER=2.4.3
 ENV UID=911 GID=911 MIX_ENV=prod
