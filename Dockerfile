@@ -26,7 +26,7 @@ USER pleroma
 WORKDIR /pleroma
 
 RUN git clone -b v2.4.2 https://git.pleroma.social/pleroma/pleroma.git /pleroma \
-    && git checkout v${PLEROMA_VER} 
+    && git checkout v${PLEROMA_VER}
 
 RUN echo "import Mix.Config" > config/prod.secret.exs \
     && mix local.hex --force \
@@ -38,7 +38,7 @@ RUN echo "import Mix.Config" > config/prod.secret.exs \
 RUN chmod a+x /pleroma/bin/pleroma && \
     chmod a+x /pleroma/releases/${PLEROMA_VER}/elixir && \
     chmod a+w /pleroma/lib -R && \
-    wget -O soapbox-fe.zip https://gitlab.com/soapbox-pub/soapbox-fe/-/jobs/artifacts/v1.3.0/download?job=build-production && \
+    wget -O soapbox-fe.zip https://gitlab.com/soapbox-pub/soapbox-fe/-/jobs/artifacts/v2.0.0/download?job=build-production && \
     mkdir -p ${DATA}/static/frontends/soapbox/stable && \
     unzip soapbox-fe.zip -o -d ${DATA}/static/frontends/soapbox/stable && \
     mv ${DATA}/static/frontends/soapbox/stable/static/* ${DATA}/static/frontends/soapbox/stable
