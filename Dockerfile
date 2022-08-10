@@ -1,6 +1,6 @@
 FROM quay.io/official-images/elixir:1.13.1-alpine
 
-ARG PLEROMA_VER=2.4.2
+ARG PLEROMA_VER=2.4.3
 ENV UID=911 GID=911 MIX_ENV=prod
 
 ENV MIX_ENV=prod
@@ -25,7 +25,7 @@ RUN mkdir -p /etc/pleroma \
 USER pleroma
 WORKDIR /pleroma
 
-RUN git clone -b v2.4.2 https://git.pleroma.social/pleroma/pleroma.git /pleroma \
+RUN git clone -b v${PLEROMA_VER} https://git.pleroma.social/pleroma/pleroma.git /pleroma \
     && git checkout v${PLEROMA_VER}
 
 RUN echo "import Mix.Config" > config/prod.secret.exs \
