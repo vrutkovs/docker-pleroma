@@ -1,6 +1,7 @@
 FROM docker.io/elixir:1.13.4-alpine
 
 ARG PLEROMA_VER=2.4.3
+ARG SOAPBOX_VER=2.0.0
 ENV UID=911 GID=911 MIX_ENV=prod
 
 ENV MIX_ENV=prod
@@ -38,7 +39,7 @@ RUN echo "import Mix.Config" > config/prod.secret.exs \
 RUN chmod a+x /pleroma/bin/pleroma && \
     chmod a+x /pleroma/releases/${PLEROMA_VER}/elixir && \
     chmod a+w /pleroma/lib -R && \
-    wget -O soapbox-fe.zip https://gitlab.com/soapbox-pub/soapbox-fe/-/jobs/artifacts/v2.0.0/download?job=build-production && \
+    wget -O soapbox-fe.zip https://gitlab.com/soapbox-pub/soapbox-fe/-/jobs/artifacts/v${SOAPBOX_VER}/download?job=build-production && \
     mkdir -p ${DATA}/static/frontends/soapbox/stable && \
     unzip soapbox-fe.zip -o -d ${DATA}/static/frontends/soapbox/stable && \
     mv ${DATA}/static/frontends/soapbox/stable/static/* ${DATA}/static/frontends/soapbox/stable
