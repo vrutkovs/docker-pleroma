@@ -6,7 +6,7 @@ ENV UID=911 GID=911 MIX_ENV=prod
 
 ENV MIX_ENV=prod
 
-RUN echo "http://nl.alpinelinux.org/alpine/latest-stable/community" >> /etc/apk/repositories \
+RUN echo "http://nl.alpinelinux.org/alpine/latest-stable/main" >> /etc/apk/repositories \
     && rm -rf /var/cache/apk/* \
     && rm -rf /tmp/* \
     && apk update \
