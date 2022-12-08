@@ -1,4 +1,4 @@
-FROM docker.io/elixir:1.13.4-alpine
+FROM docker.io/elixir:1.14.2-alpine
 
 ARG PLEROMA_VER=2.4.5
 ARG SOAPBOX_VER=2.0.0
