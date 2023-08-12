@@ -1,6 +1,6 @@
 FROM docker.io/elixir:1.14.2-alpine
 
-ARG PLEROMA_VER=2.5.2
+ARG PLEROMA_VER=2.5.4
 ARG SOAPBOX_VER=3.2.0
 ENV UID=911 GID=911 MIX_ENV=prod
 
@@ -18,7 +18,7 @@ RUN addgroup -g ${GID} pleroma \
 
 ARG DATA=/var/lib/pleroma
 RUN mkdir -p /etc/pleroma \
-  && chown -R pleroma /etc/pleroma \
+  && chown -R pleroma:pleroma /etc/pleroma \
   && mkdir -p ${DATA}/uploads \
   && mkdir -p ${DATA}/static \
   && chown -R pleroma ${DATA}
@@ -44,8 +44,7 @@ RUN chmod a+x /pleroma/bin/pleroma && \
   unzip soapbox-fe.zip -o -d ${DATA}/static/frontends/soapbox/stable && \
   mv ${DATA}/static/frontends/soapbox/stable/static/* ${DATA}/static/frontends/soapbox/stable
 
-COPY ./config.exs /etc/pleroma/config.exs
-
+COPY --chmod=0640 --chown=pleroma:pleroma ./config.exs /etc/pleroma/config.exs
 EXPOSE 4000
 
 ENTRYPOINT ["/pleroma/docker-entrypoint.sh"]
